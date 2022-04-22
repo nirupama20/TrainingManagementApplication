@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration and Login App</title>
+
+
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+<style>
+#logout {
+	width: 30px;
+	height: 30px;
+	margin-left: 900px;
+}
+
+body {
+	background-image:
+		url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm183-nunny-38.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&auto=format&ixlib=js-2.2.1&s=5452ba12f4e508314e14efdef60201f2");
+	background-size: cover;
+}
+
+.dropdown {
+	display: inline-block;
+	position: relative;
+	margin-left: 800px;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	width: 100%;
+	overflow: auto;
+	background-color: white;
+	box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.4);
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.dropdown-content a {
+	display: block;
+	color: black;
+	padding: 5px;
+	text-decoration: none;
+}
+
+.dropdown-content a:hover {
+	color: #FFFFFF;
+	background-color: #00A4BD;
+}
+
+.btn {
+	border-radius: 10px;
+	color: white;
+}
+
+.settings {
+	margin-top: -10px;
+	width: 50px;
+	height: 40px;
+	margin-left: 50px;
+}
+
+@import
+	url('https://fonts.googleapis.com/css?family=Oswald:300,400,500,700');
+
+@import
+	url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800')
+	;
+
+$
+gr-1:linear-gradient (170deg, #01E4F8 0%, #1D3EDE 100%); $gr-2:linear-gradient
+	(170deg, #B4EC51 0%, #429321 100%); $gr-3:linear-gradient (170deg,
+	#C86DD7 0%, #3023AE 100%); .gr-1 {
+	background: $gr-1;
+}
+
+.gr-2 {
+	background: $gr-2;
+}
+
+.gr-3 {
+	background: $gr-3;
+}
+
+* {
+	transition: .5s;
+}
+
+.h-100 {
+	height: 100vh !important;
+}
+
+.align-middle {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.column {
+	margin-top: 3rem;
+	padding-left: 3rem; &: hover { padding-left : 0; . card .txt{
+	margin-left : 1rem; h1 , p{ color : rgba( 255, 255, 255, 1);
+	opacity: 1;
+}
+
+}
+a {
+	color: rgba(255, 255, 255, 1);
+	&:
+	after
+	{
+	width
+	:
+	10%;
+}
+
+}
+}
+}
+.card {
+	min-height: 170px;
+	margin: 0;
+	padding: 1.7rem 1.2rem;
+	border: none;
+	border-radius: 0;
+	color: rgba(0, 0, 0, 1);
+	letter-spacing: .05rem;
+	font-family: 'Oswald', sans-serif;
+	box-shadow: 0 0 21px rgba(0, 0, 0, .27); . txt { margin-left : -3rem;
+	z-index: 1; h1 { font-size : 1.5rem;
+	font-weight: 300;
+	text-transform: uppercase;
+}
+
+p {
+	font-size: .7rem;
+	font-family: 'Open Sans', sans-serif;
+	letter-spacing: 0rem;
+	margin-top: 33px;
+	opacity: 0;
+	color: rgba(255, 255, 255, 1);
+}
+
+}
+a {
+	z-index: 3;
+	font-size: .7rem;
+	color: rgba(0, 0, 0, 1);
+	margin-left: 1rem;
+	position: relative;
+	bottom: -.5rem;
+	text-transform: uppercase; &: after { content : "";
+	display: inline-block;
+	height: 0.5em;
+	width: 0;
+	margin-right: -100%;
+	margin-left: 10px;
+	border-top: 1px solid rgba(255, 255, 255, 1);
+	transition: .5s;
+}
+
+}
+.ico-card {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+i {
+	position: relative;
+	right: -50%;
+	top: 60%;
+	font-size: 12rem;
+	line-height: 0;
+	opacity: .2;
+	color: rgba(255, 255, 255, 1);
+	z-index: 0;
+}
+}
+</style>
+
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#" th:href="@{/trainer/seeDashboard}">Trainer
+				Portal</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" href="#" th:href="@{/trainer/addTask}">Add
+							Task</a></li>
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" href="#" th:href="@{/trainer/allTask}">All
+							Tasks</a></li>
+					<li class="nav-item">
+
+						<div class="dropdown">
+							<button class="btn">
+								<img
+									src="https://cdn-icons-png.flaticon.com/512/5238/5238489.png"
+									class="settings">
+							</button>
+							<div class="dropdown-content">
+								<a th:href="@{/trainer/seeDashboard}">Trainer's list</a> <a
+									th:href="@{/trainer/dashboard2}">Profile</a> <a
+									th:href="@{/trainer/logout}">Logout</a>
+							</div>
+						</div>
+					</li>
+				</ul>
+
+			</div>
+		</div>
+	</nav>
+
+	<div class="container h-100">
+		<div class="row align-middle">
+			<div class="col-md-6 col-lg-4 column">
+				<div class="card gr-1">
+					<div class="txt">
+						<h1>
+							TASK AND </br> WEB DESIGN
+						</h1>
+						<p>Visual communication and problem-solving</p>
+					</div>
+					<a th:href="@{/trainer/addTask}">more</a>
+					<div class="ico-card">
+						<i class="fa fa-rebel"></i>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-4 column">
+				<div class="card gr-2">
+					<div class="txt">
+						<h1>
+							GIT-HUB </br> SOLUTIONS
+						</h1>
+						<p>Accessing the git-hub.</p>
+					</div>
+					<a href="#">more</a>
+					<div class="ico-card">
+						<i class="fa fa-codepen"></i>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-4 column">
+				<div class="card gr-3">
+					<div class="txt">
+						<h1>
+							TASK STATUS</br>AND UPDATE CHECK
+						</h1>
+						<p>Trainer need to check the status and updates of task.</p>
+					</div>
+					<a th:href="@{/trainer/seeDashboard}">more</a>
+					<div class="ico-card">
+						<i class="fa fa-empire"></i>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</body>
+
+</html>

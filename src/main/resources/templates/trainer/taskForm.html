@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Add Task</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<style>
+
+
+#logout{
+width:30px;
+height:30px;
+margin-left:900px;
+}
+
+
+body{
+background-image:url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm27-ning-48-wood.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&auto=format&ixlib=js-2.2.1&s=1822017ab0477c67548294d383e6b917");
+background-size:cover;
+}
+.dropdown {
+  display: inline-block;
+  position: relative;
+  margin-left:800px;
+  
+ 
+}
+.dropdown-content {
+  background-color: white;
+  display: none;
+  position: absolute;
+  width: 100%;
+  overflow: auto;
+  box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown-content a {
+  display: block;
+  color:black;
+  padding: 5px;
+  text-decoration: none;
+}
+.dropdown-content a:hover {
+  color: #FFFFFF;
+  background-color: #00A4BD;
+}
+.btn{
+border-radius:10px;
+color:white;
+}
+.settings{
+margin-top:-10px;
+width:50px;
+height:40px;
+margin-left:50px;
+
+}
+
+</style>
+
+
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"  th:href="@{/trainer/dashboard1}">Trainer Portal</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="#" th:href="@{/trainer/addTask}">Add Tasks</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" th:href="@{/trainer/allTask}">See Task</a>
+					</li>
+					 <li class="nav-item">
+        
+  <div class="dropdown">
+  <button class="btn"><img src="https://cdn-icons-png.flaticon.com/512/5238/5238489.png" class="settings"></button>
+  <div class="dropdown-content">
+  <a  th:href="@{/trainer/seeDashboard}">Trainer's list</a>
+  <a  th:href="@{/trainer/dashboard2}">Profile</a>
+  <a th:href="@{/trainer/logout}">Logout</a>
+  </div>
+</div>
+        </li>
+				</ul>
+
+			</div>
+		</div>
+	</nav>
+	<br>
+	<br>
+	<!-- Create HTML registration form -->
+	<div class="container">
+		<div class="row d-flex justify-content-center">
+			<div class="col-md-6 col-md-offset-3 border border-secondary p-3 rounded" style="background-color: white;">
+
+				<!-- success message -->
+				<div th:if="${saveTask}">
+					<div class="alert alert-info text-center"> Task added successfully</div>
+				</div>
+				
+				<h1 class="text-center">Add Task</h1 >
+
+				<form th:action="@{/trainer/saveTask}" method="post" th:object="${task}">
+					<div class="form-group">
+						<label class="control-label" for="taskName"> Task Name </label>
+						<input id="taskName" class="form-control" name="taskName"
+							required autofocus="autofocus" placeholder="Enter task name"/>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label" for="description"> Task Status </label> <input
+							id="description" class="form-control" name="description"
+							required autofocus="autofocus" placeholder="Enter task status"/>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label" for="email"> Enter trainee Email </label> <input
+							id="email" class="form-control"  required placeholder="Enter trainee email" name="email"
+							autofocus="autofocus" />
+					</div>
+					<div class="form-group text-center">
+						<input value="Add" type="submit" class="btn btn-danger mt-2">
+					
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body >
+</html>

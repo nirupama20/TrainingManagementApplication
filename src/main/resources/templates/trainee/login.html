@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration and Login App</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+  body{
+background-image:url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/v944-bb-16.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&auto=format&ixlib=js-2.2.1&s=45ce1491509c93180e5e474a5976f3cc");
+background-size:cover;  
+height:800px;
+  }
+  .container{
+                width:800px;
+                height: 300px;
+                margin-left:200px;
+                margin-top:10px;
+                color:black;
+  }
+  #regimg{
+  height:150px;
+  width:150px;
+  margin-left:530px;
+  }
+  </style>
+  
+</head>
+<body>	
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+    <ul class="nav navbar-nav">
+      
+      <li ><a href="/" th:href="@{/home}">Home</a></li>
+      <li ><a href="/" th:href="@{/trainee/home}">Trainee Registration</a></li>
+      <li><a href="/" th:href="@{/trainer/home}">Trainer Registration</a></li>
+    </ul>
+   
+  </div>
+</nav>
+<img src="https://cdn-icons-png.flaticon.com/512/3014/3014261.png" id="regimg">
+	<div class = "container " >
+		<div class = "row d-flex justify-content-center">
+			<div class = "col-md-6 col-md-offset-3 border border-secondary p-3 rounded" style="background-color: white;">
+				
+				<h1 class="text-center">Login</h1 >
+				<form th:action="@{/trainee/doLogin}" method="post" th:object="${trainee}">
+					
+					<!-- error message -->
+					<div th:if="${tsuccess}">
+						<div class="alert alert-danger">Invalid username or
+							password.</div>
+					</div>
+				
+					<!-- logout message -->
+					<div th:if="${tlogout}">
+						<div class="alert alert-info text-center">You have been logged out.</div>
+					</div>
+					
+					<div class = "form-group">
+						<label for ="username"> Email </label> :
+						<input type="text" class = "form-control" id ="temail" name = "temail"
+						placeholder="Enter Email ID" autofocus="autofocus">
+					</div>
+					
+					<div class="form-group">
+						<label for="password">Password</label>: <input type="password"
+							id="password" name="tpassword" class="form-control"
+							placeholder="Enter Password" />
+					</div>
+					
+					<div class="form-group ">
+						<div class="form-group text-center">
+						<input value="Login" type="submit" class="btn btn-danger btn-lg">
+					
+					</div>
+					</div>
+				</form>
+				<div class="form-group mt-3">
+						<span>New user? <a href="/" th:href="@{/trainee/home}">Register
+								here</a></span>
+				</div>
+			</div>
+		</div>
+	</div>
+</body >
+</html>

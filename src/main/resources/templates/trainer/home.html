@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Trainer Registration</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+  body{
+background-image:url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/385-felix-mg-8161-kut_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&auto=format&ixlib=js-2.2.1&s=fd9d9e6eb87b2abe36ff242d6136bd23");
+height:1000px;
+background-size:cover;  
+  }
+  .container{
+                width:800px;
+                height: 300px;
+                margin-left:200px;
+                margin-top:10px;
+                color:black;
+  }
+  #regimg{
+  height:150px;
+  width:150px;
+  margin-left:530px;
+  }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+    <ul class="nav navbar-nav">
+      
+      <li ><a href="/" th:href="@{/home}">Home</a></li>
+      <li ><a href="/" th:href="@{/trainee/home}">Trainee Registration</a></li>
+      <li><a href="/" th:href="@{/trainer/home}">Trainer Registration</a></li>
+    </ul>
+   
+  </div>
+</nav>
+<img src="https://cdn-icons-png.flaticon.com/512/3014/3014261.png" id="regimg">
+	<!-- Create HTML registration form -->
+	<div class="container">
+		<div class="row d-flex justify-content-center">
+			<div class="col-md-6 col-md-offset-3 border border-secondary p-3 rounded" style="background-color: white;">
+
+				<!-- success message -->
+				<div th:if="${trsave}">
+				<br>
+					<div class="alert alert-info text-center"> <span th:if="${trname}" th:text="${trname}"></span > you've successfully registered</div>
+				</div>
+				<div th:if="${trexist}">
+				<br>
+					<div class="alert alert-warning text-center">Trainer with given mail id already exist</div>
+				</div>
+				
+				<div th:if="${trpassword}">
+				<br>
+					<div class="alert alert-warning text-center">Password's did not matched</div>
+				</div>
+				
+				
+				
+				<h1 class="text-center">Trainer Registration</h1 >
+
+				<form th:action="@{/trainer/saveTrainer}" method="post" th:object="${trainer}">
+					<div class="form-group">
+						<label class="control-label" for="firstName"> First Name </label>
+						<input id="firstName" class="form-control" name="firstName"
+							required autofocus="autofocus" placeholder="Enter you first name"/>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label" for="lastName"> Last Name </label> <input
+							id="lastName" class="form-control" name="lastName"
+							required autofocus="autofocus" placeholder="Enter your last name"/>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label" for="email"> Email </label> <input
+							id="email" class="form-control"  required placeholder="Enter your email" name="email"
+							autofocus="autofocus" />
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label" for="phoneno"> Phone Number </label> <input
+							id="phoneno" class="form-control"  required placeholder="Enter phone Nummber" name="phoneno"
+							autofocus="autofocus" />
+					</div>
+
+					<div class="form-group">
+						<label class="control-label" for="password"> Password </label> <input
+							id="password" class="form-control" type="password" placeholder="Enter your password"name="password"
+							 required autofocus="autofocus" />
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label" for="confirmpassword"> Confirm Password </label> <input
+							id="confirmpassword" class="form-control" type="password" placeholder="Enter your password again"name="conformpassword"
+							 required autofocus="autofocus" />
+					</div>
+
+					<div class="form-group text-center">
+						<input value="Sign Up" type="submit" class="btn btn-danger btn-lg">
+					
+					</div>
+					<span>Already registered? <a  th:href="@{/trainer/login}">Login
+								here</a></span>
+				</form>
+			</div>
+		</div>
+		<div class="row d-flex justify-content-center">
+		<div class="col-md-6 col-md-offset-3">
+		<p class="h5 mt-2" style="color:grey;">By Signing Up you are agreeing to our terms and conditions</p>
+		</div>
+		</div>
+	</div>
+</body >
+</html>

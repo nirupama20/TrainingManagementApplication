@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Trainee Registration</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+  body{
+background-image:url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/v944-bb-16.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&auto=format&ixlib=js-2.2.1&s=45ce1491509c93180e5e474a5976f3cc");
+background-size:cover; 
+height:1000px; 
+  }
+  .container{
+                width:800px;
+                height: 400px;
+                margin-left:200px;
+                margin-top:10px;
+                color:black;
+  }
+  #regimg{
+  height:150px;
+  width:150px;
+  margin-left:530px;
+  }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+    <ul class="nav navbar-nav">
+      
+      <li ><a href="/" th:href="@{/home}">Home</a></li>
+      <li ><a href="/" th:href="@{/trainee/home}">Trainee Registration</a></li>
+      <li><a href="/" th:href="@{/trainer/home}">Trainer Registration</a></li>
+    </ul>
+   
+  </div>
+</nav>
+<img src="https://cdn-icons-png.flaticon.com/512/3014/3014261.png" id="regimg">
+
+
+
+
+	<!-- Create HTML registration form -->
+	<div class="container">
+		<div class="row d-flex justify-content-center">
+			<div class="col-md-6 col-md-offset-3 border border-secondary p-3 rounded" style="background-color: white;">
+
+				<!-- success message -->
+				<div th:if="${tsave}">
+				<br>
+					<div class="alert alert-info text-center"><span th:if="${tname}" th:text="${tname}"></span > you've successfully registered to the trainee portal</div>
+				</div>
+				<div th:if="${texist}">
+				<br>
+					<div class="alert alert-warning text-center">User with given mail id already exist</div>
+				</div>
+				
+				<div th:if="${tpass}">
+				<br>
+					<div class="alert alert-warning text-center">password did not matched</div>
+				</div>
+				
+				<h1 class="text-center">Trainee Registration</h1 >
+
+				<form th:action="@{/trainee/saveTrainee}" method="post" th:object="${trainee}">
+					<div class="form-group">
+						<label class="control-label" for="firstName">  Name </label>
+						<input id="tname" class="form-control" name="tname"
+							required autofocus="autofocus" placeholder="Enter you first name"/>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label" for="email"> Email </label> <input
+							id="temail" class="form-control"  required placeholder="Enter your email" name="temail"
+							autofocus="autofocus" />
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label" for="phoneno"> Phone Number </label> <input
+							id="tphoneno" class="form-control"  required placeholder="Enter your phone Number" name="tphoneno"
+							autofocus="autofocus" />
+					</div>
+
+					<div class="form-group">
+						<label class="control-label" for="password"> Password </label> <input
+							id="tpassword" class="form-control" type="password" placeholder="Enter your password"name="tpassword"
+							 required autofocus="autofocus" />
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label" for="conformpassword">Confirm Password </label> <input
+							id="tconformpassword" class="form-control" type="password" placeholder="Enter your password again"name="tconformpassword"
+							 required autofocus="autofocus" />
+					</div>
+
+					<div class="form-group text-center">
+						<input value="Sign Up" type="submit" class="btn btn-danger btn-lg">
+					
+					</div>
+					<span>Already registered? <a  th:href="@{/trainee/login}">Login here</a></span>
+				</form>
+			</div>
+		</div>
+		<div class="row d-flex justify-content-center">
+		<div class="col-md-6 col-md-offset-3">
+		<p class="h5 mt-2" style="color:grey;">By Signing Up you are agreeing to our terms and conditions</p>
+		</div>
+		</div>
+	</div>
+</body >
+</html>
